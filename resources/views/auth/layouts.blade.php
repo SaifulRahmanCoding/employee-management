@@ -4,7 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Admin</title>
+    <title>
+        @php
+            $routeName = Route::currentRouteName();
+            echo $routeName ? ucwords(str_replace('.', ' ', $routeName)) : 'Admin';
+        @endphp
+    </title>
     <link rel="stylesheet" href="{{ asset('modern/src/assets/css/styles.min.css') }}" />
 </head>
 
@@ -44,12 +49,12 @@
                                 <span class="hide-menu">DATA</span>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="{{ route('employee') }}" aria-expanded="false">
+                                <a class="sidebar-link" href="{{ route('employee.index') }}" aria-expanded="false">
                                     <span>
                                         {{-- <i class="ti ti-user-plus"></i> --}}
                                         <i class="ti ti-user"></i>
                                     </span>
-                                    <span class="hide-menu">Data Employees</span>
+                                    <span class="hide-menu">Employees</span>
                                 </a>
                             </li>
                         </ul>
@@ -72,11 +77,11 @@
                                 </a>
                             </li>
                         </ul>
-                        
+
                         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                                 <li class="nav-item dropdown">
-                                    <span style="display: absolute; top:0;" class="me-2">{{ Auth::user()->name }}</span>
+                                    <span style="display: absolute; top:0;" class="me-2">{{ ucwords(Auth::user()->name) }}</span>
                                     <a class="nav-link nav-icon-hover mb-0 p-0 d-inline-block" href="javascript:void(0)"
                                         id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img src="{{ asset('modern/src/assets/images/profile/user-1.jpg') }}" alt=""
